@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #1e1b4b,
+    #6b21a8
+  ); /* Indigo to purple gradient */
+  color: #fff;
+}
+
+.clock::before {
+  content: "";
+  position: absolute;
+  height: 100px;
+  width: 100px;
+
+  /* optional for better visuals */
+
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #ff8e53
+  ); /* Warm gradient for pseudo-element */
+  left: -50px;
+
+  top: -50px;
+  filter: blur(2px);
+  z-index: -1;
+  animation: move 5s ease-in infinite alternate;
+}
+
+.clock::after {
+  content: "";
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(
+    45deg,
+    #061cdf,
+    #00ddeb
+  ); /* Cool gradient for pseudo-element */
+  border-radius: 50%;
+  right: -50px;
+  bottom: -50px;
+  filter: blur(2px);
+  animation: spin 3s ease-in infinite; /* no extra props needed */
+  z-index: -1;
+}
+
+.clock {
+  background-color: rgba(181, 173, 173, 0.3);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 25vh;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 0px 5px #8b8888;
+}
+
+.clock h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, brown, #161616); /* gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.clock span {
+  position: relative;
+  background: linear-gradient(45deg, #353536, #0e0e0e); /* gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  top: -20px;
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    filter: blur(3px);
+  }
+  50% {
+    filter: blur(4px);
+    transform: rotate(180deg);
+  }
+
+  75% {
+    filter: blur(6px);
+  }
+
+  100% {
+    transform: rotate(360deg); /* <-- add deg */
+    filter: blur(2px);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateY(50px);
+    filter: blur(4px);
+  }
+
+  100% {
+    transform: translateX(0);
+    filter: blur(8px);
+  }
+}
+
+@media (max-width: 500px) {
+  .clock {
+    max-width: 300px;
+    height: 20vh;
+  }
+
+  .clock h1 {
+    font-size: 2.5rem;
+  }
+}
